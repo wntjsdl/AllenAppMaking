@@ -1,5 +1,5 @@
 import UIKit
-
+// 10/25
 /*:
  ## 네트워크 통신(서버와의 통신)의 기초
  * 요청(Request) ➡︎ 서버데이터(JSON) ➡︎ 분석(Parse) ➡︎ 변환 (우리가 쓰려는 Struct/Class)
