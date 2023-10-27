@@ -28,11 +28,12 @@ struct Music: Codable {
 }
 
 
-func getMethod() {
+func getMethod(completionHandler: @escaping ([Music]?) -> Void) {
     
     // URL구조체 만들기
     guard let url = URL(string: "https://itunes.apple.com/search?media=music&term=jazz") else {
         print("Error: cannot create URL")
+        completionHandler(nil)
         return
     }
     
@@ -46,34 +47,41 @@ func getMethod() {
         guard error == nil else {
             print("Error: error calling GET")
             print(error!)
+            completionHandler(nil)
             return
         }
         
         // 옵셔널 바인딩
         guard let safeData = data else {
             print("Error: Did not receive data")
+            completionHandler(nil)
             return
         }
         
         // HTTP 200번대 정상코드인 경우만 다음 코드로 넘어감
         guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
             print("Error: HTTP request failed")
+            completionHandler(nil)
             return
         }
         
         do {
             let decoder = JSONDecoder()
-            let musicArray = try decoder.decode(MusicData.self, from: safeData)
-            dump(musicArray)
+            let musicData = try decoder.decode(MusicData.self, from: safeData)
+            completionHandler(musicData.results)
+            return
         } catch {
             
         }
-        
     }.resume()   // 시작
-    print("⭐️⭐️⭐️⭐️⭐️⭐️")
 }
 
-getMethod()
+getMethod { musicArray in
+    
+    guard let array = musicArray else { return }
+    dump(array)
+    
+}
 
 
 

@@ -90,8 +90,6 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = musicTableView.dequeueReusableCell(withIdentifier: Cell.musicCellIdentifier, for: indexPath) as! MusicCell
         
-
-        
         cell.imageUrl = musicArrays[indexPath.row].imageUrl
         
         cell.songNameLabel.text = musicArrays[indexPath.row].songName
@@ -107,22 +105,22 @@ extension ViewController: UITableViewDataSource {
 extension ViewController: UITableViewDelegate {
     // 테이블뷰 셀의 높이를 유동적으로 조절하고 싶다면 구현할 수 있는 메서드
     // (musicTableView.rowHeight = 120 대신에 사용가능)
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
-    }
-    
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 120
 //    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension // 알아서 높이를 잡음
+    }
 
 }
 
 
 //MARK: - 🍏 (단순) 서치바 확장
 
-//extension ViewController: UISearchBarDelegate {
-//
-//    // 유저가 글자를 입력하는 순간마다 호출되는 메서드
+extension ViewController: UISearchBarDelegate {
+
+    // 유저가 글자를 입력하는 순간마다 호출되는 메서드
 //    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 //
 //        print(searchText)
@@ -142,31 +140,31 @@ extension ViewController: UITableViewDelegate {
 //            }
 //        }
 //    }
-//
-//    // 검색(Search) 버튼을 눌렀을때 호출되는 메서드
-////    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-////        guard let text = searchController.searchBar.text else {
-////            return
-////        }
-////        print(text)
-////        // 다시 빈 배열로 만들기 ⭐️
-////        self.musicArrays = []
-////
-////        // 네트워킹 시작
-////        networkManager.fetchMusic(searchTerm: text) { result in
-////            switch result {
-////            case .success(let musicDatas):
-////                self.musicArrays = musicDatas
-////                DispatchQueue.main.async {
-////                    self.musicTableView.reloadData()
-////                }
-////            case .failure(let error):
-////                print(error.localizedDescription)
-////            }
-////        }
-////        self.view.endEditing(true)
-////    }
-//}
+
+    // 검색(Search) 버튼을 눌렀을때 호출되는 메서드
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchController.searchBar.text else {
+            return
+        }
+        print(text)
+        // 다시 빈 배열로 만들기 ⭐️
+        self.musicArrays = []
+
+        // 네트워킹 시작
+        networkManager.fetchMusic(searchTerm: text) { result in
+            switch result {
+            case .success(let musicDatas):
+                self.musicArrays = musicDatas
+                DispatchQueue.main.async {
+                    self.musicTableView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        self.view.endEditing(true)
+    }
+}
 
 
 //MARK: -  🍎 검색하는 동안 (새로운 화면을 보여주는) 복잡한 내용 구현 가능
