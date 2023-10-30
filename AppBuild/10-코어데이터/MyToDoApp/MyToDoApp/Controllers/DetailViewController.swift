@@ -74,6 +74,7 @@ final class DetailViewController: UIViewController {
             
             mainTextView.text = "텍스트를 여기에 입력하세요."
             mainTextView.textColor = .lightGray
+            saveButton.setTitle("SAVE", for: .normal)
             setupColorTheme(color: .red)
         }
         setupColorButton(num: temporaryNum ?? 1)

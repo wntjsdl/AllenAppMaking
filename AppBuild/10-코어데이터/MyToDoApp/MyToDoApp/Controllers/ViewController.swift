@@ -37,6 +37,7 @@ final class ViewController: UIViewController {
 
     func setupTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
         // 테이블뷰의 선 없애기
         tableView.separatorStyle = .none
     }
@@ -70,9 +71,10 @@ extension ViewController: UITableViewDataSource {
 
 extension ViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ToDoCell", sender: indexPath)
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        performSegue(withIdentifier: "ToDoCell", sender: indexPath)
+//    }
+//
     
     // (세그웨이를 실행할때) 실제 데이터 전달 (ToDoData전달)
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
