@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6327CE0D2AF154A800E3BD13 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6327CE0C2AF154A800E3BD13 /* DetailView.swift */; };
 		63B7743A2AEFCCD300AEC0B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B774392AEFCCD300AEC0B4 /* AppDelegate.swift */; };
 		63B7743C2AEFCCD300AEC0B4 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B7743B2AEFCCD300AEC0B4 /* SceneDelegate.swift */; };
 		63B7743E2AEFCCD300AEC0B4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B7743D2AEFCCD300AEC0B4 /* ViewController.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6327CE0C2AF154A800E3BD13 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		63B774362AEFCCD300AEC0B4 /* ToDoApp_Code.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoApp_Code.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63B774392AEFCCD300AEC0B4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		63B7743B2AEFCCD300AEC0B4 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		63B774582AEFD01100AEC0B4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				6327CE0C2AF154A800E3BD13 /* DetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				63B774442AEFCCD300AEC0B4 /* ToDoApp_Code.xcdatamodeld in Sources */,
 				63B774672AEFD36400AEC0B4 /* ToDoData+CoreDataProperties.swift in Sources */,
 				63B774662AEFD36400AEC0B4 /* ToDoData+CoreDataClass.swift in Sources */,
+				6327CE0D2AF154A800E3BD13 /* DetailView.swift in Sources */,
 				63B7743C2AEFCCD300AEC0B4 /* SceneDelegate.swift in Sources */,
 				63B774632AEFD2C600AEC0B4 /* CoreDataManager.swift in Sources */,
 				63B774692AEFE52C00AEC0B4 /* DetailViewController.swift in Sources */,
