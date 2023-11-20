@@ -17,6 +17,7 @@ class ListViewController: UITableViewController, UIPickerViewDelegate, UIPickerV
     
 //    var accountlist = [String]()
     var accountlist = ["test@naver.com"]
+    var defaultPList: NSDictionary!
     
     /*
     @IBAction func edit(_ sender: UITapGestureRecognizer) {
@@ -42,6 +43,10 @@ class ListViewController: UITableViewController, UIPickerViewDelegate, UIPickerV
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let defaultPListPath = Bundle.main.path(forResource: "UserInfo", ofType: "plist") {
+            self.defaultPList = NSDictionary(contentsOfFile: defaultPListPath)
+        }
         
         let plist = UserDefaults.standard
 
@@ -73,22 +78,73 @@ class ListViewController: UITableViewController, UIPickerViewDelegate, UIPickerV
         new.action = #selector(newAccount)
         
         toolbar.setItems([new, flexSpace, done], animated: true)
+        
+        let accountlist = plist.array(forKey: "accountlist") as? [String] ?? [String]()
+        self.accountlist = accountlist
+        
+        if let account = plist.string(forKey: "selectedAccount") {
+            self.account.text = account
+            let customPlist = "\(account).plist"
+            let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+            
+            let path = paths[0] as NSString
+            let clist = path.strings(byAppendingPaths: [customPlist]).first!
+            let data = NSDictionary(contentsOfFile: clist)
+            
+            self.name.text = data?["name"] as? String
+            self.gender.selectedSegmentIndex = data?["gender"] as? Int ?? 0
+            self.married.isOn = data?["married"] as? Bool ?? false
+            
+        }
+        
+        if (self.account.text?.isEmpty)! {
+            self.account.placeholder = "등록된 계정이 없습니다."
+            self.gender.isEnabled = false
+            self.married.isEnabled = false
+        }
+        
+        let addBtn = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(newAccount))
+        self.navigationItem.rightBarButtonItems = [addBtn]
     }
     
     @IBAction func changeGender(_ sender: UISegmentedControl) {
         let value = sender.selectedSegmentIndex
         
-        let plist = UserDefaults.standard
-        plist.set(value, forKey: "gender")
-        plist.synchronize()
+//        let plist = UserDefaults.standard
+//        plist.set(value, forKey: "gender")
+//        plist.synchronize()
+        
+        let customPlist = "\(self.account.text!).plist"
+        
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        
+        let path = paths[0] as NSString
+        let plist = path.strings(byAppendingPaths: [customPlist]).first!
+        let data = NSMutableDictionary(contentsOfFile: plist) ?? NSMutableDictionary(dictionary: self.defaultPList)
+        
+        data.setValue(value, forKey: "gender")
+        data.write(toFile: plist, atomically: true)
     }
     
     @IBAction func changeMarried(_ sender: UISwitch) {
         let value = sender.isOn
         
-        let plist = UserDefaults.standard
-        plist.set(value, forKey: "married")
-        plist.synchronize()
+//        let plist = UserDefaults.standard
+//        plist.set(value, forKey: "married")
+//        plist.synchronize()
+        
+        let customPlist = "\(self.account.text!).plist"
+        
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        
+        let path = paths[0] as NSString
+        let plist = path.strings(byAppendingPaths: [customPlist]).first!
+        let data = NSMutableDictionary(contentsOfFile: plist) ?? NSMutableDictionary(dictionary: self.defaultPList)
+        
+        data.setValue(value, forKey: "married")
+        data.write(toFile: plist, atomically: true)
+        
+        print("custom plist=\(plist)")
     }
     
     // MARK: - Table view data source
@@ -102,7 +158,7 @@ class ListViewController: UITableViewController, UIPickerViewDelegate, UIPickerV
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 1 {
+        if indexPath.row == 1 && (self.account.text?.isEmpty)! == false {
             let alert = UIAlertController(title: nil, message: "이름을 입력하세요", preferredStyle: .alert)
             
             alert.addTextField() {
@@ -112,9 +168,19 @@ class ListViewController: UITableViewController, UIPickerViewDelegate, UIPickerV
             alert.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
                 let value = alert.textFields?[0].text
                 
-                let plist = UserDefaults.standard
-                plist.setValue(value, forKey: "name")
-                plist.synchronize()
+//                let plist = UserDefaults.standard
+//                plist.setValue(value, forKey: "name")
+//                plist.synchronize()
+                
+                let customPlist = "\(self.account.text!).plist"
+                
+                let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+                let path = paths[0] as NSString
+                let plist = path.strings(byAppendingPaths: [customPlist]).first!
+                let data = NSMutableDictionary(contentsOfFile: plist) ?? NSMutableDictionary(dictionary: self.defaultPList)
+                
+                data.setValue(value, forKey: "name")
+                data.write(toFile: plist, atomically: true)
                 
                 self.name.text = value
             })
@@ -198,10 +264,28 @@ class ListViewController: UITableViewController, UIPickerViewDelegate, UIPickerV
         self.account.text = account
         
 //        self.view.endEditing(true)
+        
+        let plist = UserDefaults.standard
+        plist.set(account, forKey: "selectedAccount")
+        plist.synchronize()
     }
     
     @objc func pickerDone(_ sender: Any) {
         self.view.endEditing(true)
+        
+        if let _account = self.account.text {
+            let customPlist = "\(_account).plist"
+            
+            let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+            
+            let path = paths[0] as NSString
+            let clist = path.strings(byAppendingPaths: [customPlist]).first!
+            let data = NSDictionary(contentsOfFile: clist)
+            
+            self.name.text = data?["name"] as? String
+            self.gender.selectedSegmentIndex = data?["gender"] as? Int ?? 0
+            self.married.isOn = data?["married"] as? Bool ?? false
+        }
     }
     
     @objc func newAccount(_ sender: Any) {
@@ -220,6 +304,15 @@ class ListViewController: UITableViewController, UIPickerViewDelegate, UIPickerV
                 self.name.text = ""
                 self.gender.selectedSegmentIndex = 0
                 self.married.isOn = false
+                
+                let plist = UserDefaults.standard
+                
+                plist.set(self.accountlist, forKey: "accountlist")
+                plist.set(account, forKey: "selectedAccount")
+                plist.synchronize()
+                
+                self.gender.isEnabled = true
+                self.married.isEnabled = true
             }
         }))
         

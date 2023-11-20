@@ -1,103 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Chalkduster.ttf">
-            <string>Chalkduster</string>
-        </array>
-    </customFonts>
     <scenes>
-        <!--마스터 뷰 컨트롤러-->
-        <scene sceneID="5X4-Jf-QtW">
+        <!--Tutorial MasterVC-->
+        <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="MasterVC" title="마스터 뷰 컨트롤러" id="FqQ-A0-wVi" customClass="TutorialMasterVC" customModule="MyMemory" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Evd-oC-jvy"/>
-                        <viewControllerLayoutGuide type="bottom" id="1ot-rD-JeY"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="EzZ-y0-exV">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController storyboardIdentifier="MasterVC" id="Y6W-OH-hqX" customClass="TutorialMasterVC" customModule="MyMemory" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KWi-Y9-S1f">
-                                <rect key="frame" x="161" y="617" width="52" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2lP-fi-eSC">
+                                <rect key="frame" x="146.66666666666666" y="768" width="100" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="zK6-cs-9z0"/>
+                                    <constraint firstAttribute="height" constant="30" id="NLX-Lp-03z"/>
+                                    <constraint firstAttribute="width" constant="100" id="Tyg-dk-Tj8"/>
                                 </constraints>
-                                <state key="normal" title="시작하기"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="시작하기"/>
                                 <connections>
-                                    <action selector="close:" destination="FqQ-A0-wVi" eventType="touchUpInside" id="c9m-IS-I8Y"/>
+                                    <action selector="close:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="wpm-Uo-RSA"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="1ot-rD-JeY" firstAttribute="top" secondItem="KWi-Y9-S1f" secondAttribute="bottom" constant="20" id="3hK-ed-liM"/>
-                            <constraint firstItem="KWi-Y9-S1f" firstAttribute="centerX" secondItem="EzZ-y0-exV" secondAttribute="centerX" id="zGh-Zs-h51"/>
+                            <constraint firstItem="2lP-fi-eSC" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="6A9-P6-8N3"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="2lP-fi-eSC" secondAttribute="bottom" constant="20" id="Oss-oC-Ddd"/>
                         </constraints>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ffb-lu-q7q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="174" y="-202"/>
+            <point key="canvasLocation" x="-321" y="-26"/>
         </scene>
         <!--Page View Controller-->
-        <scene sceneID="x3U-xc-mvm">
+        <scene sceneID="sb7-dP-zlK">
             <objects>
-                <pageViewController storyboardIdentifier="PageVC" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="8Uv-S4-NyE" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ha2-DG-Q6p" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <pageViewController storyboardIdentifier="PageVC" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="ASd-NA-vZS" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R3q-zH-rbr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="914" y="-203"/>
+            <point key="canvasLocation" x="459" y="-26"/>
         </scene>
-        <!--콘텐츠 뷰 컨트롤러-->
-        <scene sceneID="EvF-ui-Q9N">
+        <!--Tutorial ContentsVC-->
+        <scene sceneID="DUq-Ad-xbE">
             <objects>
-                <viewController storyboardIdentifier="ContentsVC" title="콘텐츠 01~04" id="Wsq-Cq-pWY" userLabel="콘텐츠 뷰 컨트롤러" customClass="TutorialContentsVC" customModule="MyMemory" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="JcU-4A-NVR"/>
-                        <viewControllerLayoutGuide type="bottom" id="rA9-AI-IfH"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="DsU-3N-QEb">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController storyboardIdentifier="ContentsVC" id="m9a-hb-k8x" customClass="TutorialContentsVC" customModule="MyMemory" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="rP6-NR-hhJ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8ZP-gb-QFd" userLabel="배경 이미지">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vdd-b3-oF9" userLabel="배경 이미지">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MhY-50-LXE" userLabel="제목 레이블">
-                                <rect key="frame" x="150.5" y="50" width="74" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7HF-KO-epf" userLabel="제목 레이블">
+                                <rect key="frame" x="173" y="89" width="47" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="36" id="k4U-fm-uLr"/>
+                                    <constraint firstAttribute="height" constant="36" id="TSw-qQ-bTf"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="Jyn-ad-ePf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="8ZP-gb-QFd" firstAttribute="leading" secondItem="DsU-3N-QEb" secondAttribute="leading" id="A4d-Ae-MNr"/>
-                            <constraint firstItem="MhY-50-LXE" firstAttribute="top" secondItem="JcU-4A-NVR" secondAttribute="bottom" constant="30" id="Bc4-xB-auF"/>
-                            <constraint firstItem="8ZP-gb-QFd" firstAttribute="bottom" secondItem="DsU-3N-QEb" secondAttribute="bottom" id="EHd-pz-ceA"/>
-                            <constraint firstItem="MhY-50-LXE" firstAttribute="centerX" secondItem="DsU-3N-QEb" secondAttribute="centerX" id="UZX-v8-ejv"/>
-                            <constraint firstItem="8ZP-gb-QFd" firstAttribute="top" secondItem="DsU-3N-QEb" secondAttribute="top" id="dIZ-JV-Nvt"/>
-                            <constraint firstItem="8ZP-gb-QFd" firstAttribute="trailing" secondItem="DsU-3N-QEb" secondAttribute="trailing" id="lnM-8M-khf"/>
+                            <constraint firstItem="7HF-KO-epf" firstAttribute="centerX" secondItem="rP6-NR-hhJ" secondAttribute="centerX" id="EV4-eJ-66H"/>
+                            <constraint firstItem="vdd-b3-oF9" firstAttribute="leading" secondItem="Jyn-ad-ePf" secondAttribute="leading" id="GBH-T4-jEc"/>
+                            <constraint firstItem="7HF-KO-epf" firstAttribute="top" secondItem="Jyn-ad-ePf" secondAttribute="top" constant="30" id="XLI-pa-iDL"/>
+                            <constraint firstItem="vdd-b3-oF9" firstAttribute="top" secondItem="rP6-NR-hhJ" secondAttribute="top" id="Z9i-uq-Qbv"/>
+                            <constraint firstItem="vdd-b3-oF9" firstAttribute="trailing" secondItem="Jyn-ad-ePf" secondAttribute="trailing" id="brm-KN-nID"/>
+                            <constraint firstItem="vdd-b3-oF9" firstAttribute="bottom" secondItem="rP6-NR-hhJ" secondAttribute="bottom" id="yZM-cP-l12"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bgImageView" destination="8ZP-gb-QFd" id="tws-qC-bWV"/>
-                        <outlet property="titleLabel" destination="MhY-50-LXE" id="CCU-PB-3D5"/>
+                        <outlet property="bgImageView" destination="vdd-b3-oF9" id="R8H-sX-PUY"/>
+                        <outlet property="titleLabel" destination="7HF-KO-epf" id="gGp-b0-fkk"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="RPa-yN-IoG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ns0-ev-xAO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1687.2" y="-203.74812593703149"/>
+            <point key="canvasLocation" x="1206.8702290076335" y="-26.056338028169016"/>
         </scene>
     </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

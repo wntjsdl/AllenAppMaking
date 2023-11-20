@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		635F82932B0797E6004FDB6B /* UserInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 635F82922B0797E6004FDB6B /* UserInfo.plist */; };
 		636FC56C2B064DA600858B87 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636FC56B2B064DA600858B87 /* AppDelegate.swift */; };
 		636FC56E2B064DA600858B87 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636FC56D2B064DA600858B87 /* SceneDelegate.swift */; };
 		636FC5702B064DA600858B87 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636FC56F2B064DA600858B87 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		635F82922B0797E6004FDB6B /* UserInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = UserInfo.plist; sourceTree = "<group>"; };
 		636FC5682B064DA600858B87 /* Chapter05-CustomPlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chapter05-CustomPlist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		636FC56B2B064DA600858B87 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		636FC56D2B064DA600858B87 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				636FC5742B064DA700858B87 /* Assets.xcassets */,
 				636FC5762B064DA700858B87 /* LaunchScreen.storyboard */,
 				636FC5792B064DA700858B87 /* Info.plist */,
+				635F82922B0797E6004FDB6B /* UserInfo.plist */,
 			);
 			path = "Chapter05-CustomPlist";
 			sourceTree = "<group>";
@@ -131,6 +134,7 @@
 				636FC5782B064DA700858B87 /* LaunchScreen.storyboard in Resources */,
 				636FC5752B064DA700858B87 /* Assets.xcassets in Resources */,
 				636FC5732B064DA600858B87 /* Main.storyboard in Resources */,
+				635F82932B0797E6004FDB6B /* UserInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
