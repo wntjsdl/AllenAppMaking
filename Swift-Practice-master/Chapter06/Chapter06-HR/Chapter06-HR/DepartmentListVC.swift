@@ -20,6 +20,7 @@ class DepartmentListVC: UITableViewController {
         super.viewDidLoad()
         
         self.departList = self.departDAO.find()
+        print(departList)
         self.initUI()
 
         let dummyView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
@@ -111,6 +112,16 @@ class DepartmentListVC: UITableViewController {
         if departDAO.remove(departCd: departCd) {
             self.departList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let departCd = self.departList[indexPath.row].departCd
+        
+        let infoVC = self.storyboard?.instantiateViewController(withIdentifier: "DEPART_INFO")
+        if let _infoVC = infoVC as? DepartmentInfoVC {
+            _infoVC.departCd = departCd
+            self.navigationController?.pushViewController(_infoVC, animated: true)
         }
     }
 

@@ -82,7 +82,7 @@ class DepartmentDAO {
     func create(title: String!, addr: String!) -> Bool {
         do {
             let sql = """
-                INSERT INTO depart (depart_title, depart_addr)
+                INSERT INTO department (depart_title, depart_addr)
                 VALUES ( ?, ? )
             """
             try self.fmdb.executeQuery(sql, values: [title!, addr!])

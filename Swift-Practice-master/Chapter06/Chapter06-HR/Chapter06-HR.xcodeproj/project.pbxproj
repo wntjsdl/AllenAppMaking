@@ -25,6 +25,8 @@
 		63A1D0B12B0E4D6D003CFE90 /* hr.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 63A1D0B02B0E4D6D003CFE90 /* hr.sqlite */; };
 		63A1D0B32B0E4D8D003CFE90 /* DepartmentDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A1D0B22B0E4D8D003CFE90 /* DepartmentDAO.swift */; };
 		63A1D0B52B0E5C95003CFE90 /* EmployeeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A1D0B42B0E5C95003CFE90 /* EmployeeDAO.swift */; };
+		63A72F0E2B0FA0A2005A80F8 /* DepartPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A72F0D2B0FA0A2005A80F8 /* DepartPickerVC.swift */; };
+		63A72F102B0FA8FF005A80F8 /* DepartmentInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A72F0F2B0FA8FF005A80F8 /* DepartmentInfoVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		63A1D0B02B0E4D6D003CFE90 /* hr.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = hr.sqlite; sourceTree = "<group>"; };
 		63A1D0B22B0E4D8D003CFE90 /* DepartmentDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentDAO.swift; sourceTree = "<group>"; };
 		63A1D0B42B0E5C95003CFE90 /* EmployeeDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDAO.swift; sourceTree = "<group>"; };
+		63A72F0D2B0FA0A2005A80F8 /* DepartPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartPickerVC.swift; sourceTree = "<group>"; };
+		63A72F0F2B0FA8FF005A80F8 /* DepartmentInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentInfoVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 				63A1D0842B0E477D003CFE90 /* ViewController.swift */,
 				63A1D0AC2B0E4C06003CFE90 /* DepartmentListVC.swift */,
 				63A1D0AE2B0E4C1B003CFE90 /* EmployeeListVC.swift */,
+				63A72F0D2B0FA0A2005A80F8 /* DepartPickerVC.swift */,
+				63A72F0F2B0FA8FF005A80F8 /* DepartmentInfoVC.swift */,
 				63A1D0862B0E477D003CFE90 /* Main.storyboard */,
 				63A1D0892B0E477E003CFE90 /* Assets.xcassets */,
 				63A1D08B2B0E477E003CFE90 /* LaunchScreen.storyboard */,
@@ -212,8 +218,10 @@
 				63A1D0852B0E477D003CFE90 /* ViewController.swift in Sources */,
 				63A1D0AD2B0E4C06003CFE90 /* DepartmentListVC.swift in Sources */,
 				63A1D0B32B0E4D8D003CFE90 /* DepartmentDAO.swift in Sources */,
+				63A72F102B0FA8FF005A80F8 /* DepartmentInfoVC.swift in Sources */,
 				63A1D0AF2B0E4C1B003CFE90 /* EmployeeListVC.swift in Sources */,
 				63A1D0AA2B0E49A3003CFE90 /* FMDatabaseQueue.m in Sources */,
+				63A72F0E2B0FA0A2005A80F8 /* DepartPickerVC.swift in Sources */,
 				63A1D0A62B0E49A3003CFE90 /* FMDatabasePool.m in Sources */,
 				63A1D0A92B0E49A3003CFE90 /* FMResultSet.m in Sources */,
 				63A1D0812B0E477D003CFE90 /* AppDelegate.swift in Sources */,
