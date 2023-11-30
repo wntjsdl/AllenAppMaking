@@ -1,0 +1,163 @@
+//
+//  ViewController.swift
+//  Chapter08-APITest
+//
+//  Created by prologue on 2017. 6. 27..
+//  Copyright © 2017년 Rubypaper. All rights reserved.
+//
+
+import UIKit
+import Alamofire
+
+class ViewController: UIViewController {
+  
+  @IBOutlet var currentTime: UILabel!
+  
+  /* POST Echo API 호출 관련 */
+  @IBOutlet var userId: UITextField!
+  @IBOutlet var name: UITextField!
+  @IBOutlet var responseView: UITextView!
+  
+  @IBAction func callCurrentTime(_ sender: Any) {
+    do {
+      let url1 = "http://swiftapi.rubypaper.co.kr:2029/practice/echo"
+      let param: Parameters = [
+        "userId": "sqlpro",
+        "name" : "재은씨"
+      ]
+      
+      let alamo = Alamofire.request(url1, method: .post, parameters: param, encoding: URLEncoding.httpBody)
+      alamo.responseJSON() { response in
+        print("JSON=\(response.result.value!)")
+        if let jsonObject = response.result.value as? [String: Any] {
+          print("userId = \(jsonObject["userId"]!)")
+          print("name = \(jsonObject["name"]!)")
+        }
+      }
+      
+      // 1. URL 설정 및 GET 방식으로 API 호출
+      let url = URL(string: "http://swiftapi.rubypaper.co.kr:2029/practice/currentTime")
+      let response = try String(contentsOf: url!)
+      
+      // 2. 읽어온 값을 레이블에 표시
+      self.currentTime.text = response
+      self.currentTime.sizeToFit()
+    } catch let e as NSError {
+      print(e.localizedDescription)
+    }
+  }
+  
+  @IBAction func post(_ sender: Any) {
+    // 1. 전송할 값 준비
+    let userId = (self.userId.text)!
+    let name = (self.name.text)!
+    let param = "userId=\(userId)&name=\(name)" // key1=value1&key2=value2&...
+    let paramData = param.data(using: .utf8)
+    
+    // 2. URL 객체 정의
+    let url = URL(string: "http://swiftapi.rubypaper.co.kr:2029/practice/echo")
+    
+    // 3. URLRequest 객체를 정의하고, 요청 내용을 담는다.
+    var request = URLRequest(url: url!)
+    request.httpMethod = "POST"
+    request.httpBody = paramData
+    
+    // 4. HTTP 메시지 헤더 설정
+    request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+    request.setValue(String(paramData!.count), forHTTPHeaderField: "Content-Length")
+    
+    // 5. URLSession 객체를 통해 전송 및 응답값 처리 로직 작성
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+      // 5-1. 서버가 응답이 없거나 통신이 실패했을 때
+      if let e = error {
+        NSLog("An error has occurred : \(e.localizedDescription)")
+        return
+      }
+      // 5-2. 응답 처리 로직이 여기에 들어갑니다.
+      // ① 메인 스레드에서 비동기로 처리되도록 한다.
+      DispatchQueue.main.async() {
+        do {
+          let object = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary
+          guard let jsonObject = object else { return }
+          
+          // ② JSON 결과값을 추출한다.
+          let result = jsonObject["result"] as? String
+          let timestamp = jsonObject["timestamp"] as? String
+          let userId = jsonObject["userId"] as? String
+          let name = jsonObject["name"] as? String
+          
+          // ③ 결과가 성공일 때에만 텍스트 뷰에 출력한다.
+          if result == "SUCCESS" {
+            self.responseView.text = "아이디 : \(userId!)" + "\n"
+              + "이름 : \(name!)" + "\n"
+              + "응답결과 : \(result!)" + "\n"
+              + "응답시간 : \(timestamp!)" + "\n"
+              + "요청방식 : x-www-form-urlencoded"
+          }
+        } catch let e as NSError {
+          print("An error has occurred while parsing JSONObject : \(e.localizedDescription)")
+        }
+      } // end if DispatchQueue.main.async()
+    }
+    // 6. POST 전송
+    task.resume()
+  }
+  
+  @IBAction func json(_ sender: Any) {
+    // 1. 전송할 값 준비
+    let userId = (self.userId.text)!
+    let name = (self.name.text)!
+    let param = ["userId" : userId, "name": name] // JSON 객체로 변환할 딕셔너리 준비
+    let paramData = try! JSONSerialization.data(withJSONObject: param, options: [])
+    
+    // 2. URL 객체 정의
+    let url = URL(string: "http://swiftapi.rubypaper.co.kr:2029/practice/echoJSON")
+    
+    // 3. URLRequest 객체 정의 및 요청 내용 담기
+    var request = URLRequest(url: url!)
+    request.httpMethod = "POST"
+    request.httpBody = paramData
+    
+    // 4. HTTP 메시지에 포함될 헤더 설정
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.setValue(String(paramData.count), forHTTPHeaderField: "Content-Length")
+    
+    // 5. URLSession 객체를 통해 전송 및 응답값 처리 로직 작성
+    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+      // 5-1. 서버가 응답이 없거나 통신이 실패했을 때
+      if let e = error {
+        NSLog("An error has occurred : \(e.localizedDescription)")
+        return
+      }
+      // 5-2. 응답 처리 로직이 여기에 들어갑니다.
+      // ① 메인 스레드에서 비동기로 처리되도록 한다.
+      DispatchQueue.main.async() {
+        do {
+          let object = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary
+          guard let jsonObject = object else { return }
+          
+          // ② JSON 결과값을 추출한다.
+          let result = jsonObject["result"] as? String
+          let timestamp = jsonObject["timestamp"] as? String
+          let userId = jsonObject["userId"] as? String
+          let name = jsonObject["name"] as? String
+          
+          // ③ 결과가 성공일 때에만 텍스트 뷰에 출력한다.
+          if result == "SUCCESS" {
+            self.responseView.text = "아이디 : \(userId!)" + "\n"
+              + "이름 : \(name!)" + "\n"
+              + "응답결과 : \(result!)" + "\n"
+              + "응답시간 : \(timestamp!)" + "\n"
+              + "요청방식 : application/json"
+          }
+        } catch let e as NSError {
+          print("An error has occurred while parsing JSONObject : \(e.localizedDescription)")
+        }
+      } // end if DispatchQueue.main.async()
+    }
+    // 6. POST 전송
+    task.resume()
+  }
+  
+}
+

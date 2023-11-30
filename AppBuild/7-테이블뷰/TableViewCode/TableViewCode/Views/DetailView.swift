@@ -54,13 +54,15 @@ final class DetailView: UIView {
         
         // 뷰컨트롤러의 기본뷰 위에 스택뷰 올리기
         self.addSubview(stackView)
+        
+        
+        setConstraints()
     }
     
     // 오토레이아웃 업데이트
-    override func updateConstraints() {
-        setConstraints()
-        super.updateConstraints()
-    }
+//    override func updateConstraints() {
+//        super.updateConstraints()
+//    }
     
     func setConstraints() {
         setMainImageViewConstraints()
