@@ -15,7 +15,7 @@ protocol MemberListType {
     subscript(index: Int) -> Member { get set }
 }
 
-final class MemberListManager {
+final class MemberListManager: MemberListType {
     
     // 멤버리스트를 저장하기 위한 배열
     private var membersList: [Member] = []
@@ -49,7 +49,16 @@ final class MemberListManager {
         membersList[index] = member
     }
     
+//    subscript(index: Int) -> Member {
+//        return membersList[index]
+//    }
+    
     subscript(index: Int) -> Member {
-        return membersList[index]
+        get {
+            return membersList[index]
+        }
+        set {
+            membersList[index] = newValue
+        }
     }
 }

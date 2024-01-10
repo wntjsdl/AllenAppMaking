@@ -209,6 +209,15 @@ final class DetailViewController: UIViewController {
     
 //    weak var delegate: MemberDelegate?
     
+    init(viewModel: MemberViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: - 라이프사이클
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -342,7 +351,7 @@ final class DetailViewController: UIViewController {
 //            delegate?.updateMember(at: memberId, with: member!)
 //        }
         
-        guard nameTextField.text == "", ageTextField.text == "" else { return }
+        guard nameTextField.text != "", ageTextField.text != "" else { return }
         
         let image = mainImageView.image
         let name = nameTextField.text

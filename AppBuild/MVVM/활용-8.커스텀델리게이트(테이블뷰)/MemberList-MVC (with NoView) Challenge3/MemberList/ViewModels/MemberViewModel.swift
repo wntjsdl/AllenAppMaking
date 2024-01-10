@@ -9,12 +9,12 @@ import UIKit
 
 class MemberViewModel {
     
-    let dataManager: MemberListType
+    let dataManager: MemberListManager
     
     private var member: Member?
-    private let index: Int?
+    private var index: Int?
     
-    init(dataManager: MemberListType, member: Member? = nil, index: Int? = nil) {
+    init(dataManager: MemberListManager, member: Member? = nil, index: Int? = nil) {
         self.dataManager = dataManager
         self.member = member
         self.index = index
@@ -56,7 +56,7 @@ class MemberViewModel {
     // MARK: - Input
     
     func handleButtonTapped(image: UIImage?, name: String?, age: String?, phone: String, address: String) {
-        if let member = member {
+        if member != nil {
             updateMember(image: image, name: name, age: age, phone: phone, address: address)
         } else {
             saveNewMember(image: image, name: name, age: age, phone: phone, address: address)
@@ -88,8 +88,7 @@ class MemberViewModel {
     }
     
     func backToBeforeVC(fromCurrentVC: UIViewController, animated: Bool) {
-        let currentVC = fromCurrentVC
-        currentVC.navigationController?.popViewController(animated: animated)
+        fromCurrentVC.navigationController?.popViewController(animated: animated)
     }
     
     

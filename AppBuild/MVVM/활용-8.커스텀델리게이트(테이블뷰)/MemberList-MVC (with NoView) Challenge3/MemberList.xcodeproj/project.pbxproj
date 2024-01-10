@@ -70,10 +70,10 @@
 			children = (
 				47D3EDB827EAD8C200211F61 /* AppDelegate.swift */,
 				47D3EDBA27EAD8C200211F61 /* SceneDelegate.swift */,
+				63C970F82B4E5CDE00B0ABB9 /* Services */,
 				47D3EDCE27EADB7800211F61 /* Models */,
 				631809682B4D36F800BF0222 /* ViewModels */,
 				47D3EDCD27EADB6400211F61 /* Views */,
-				47D3EDCC27EADB5800211F61 /* Controllers */,
 				47D3EDBE27EAD8C200211F61 /* Main.storyboard */,
 				47D3EDC127EAD8C300211F61 /* Assets.xcassets */,
 				47D3EDC327EAD8C300211F61 /* LaunchScreen.storyboard */,
@@ -82,19 +82,12 @@
 			path = MemberList;
 			sourceTree = "<group>";
 		};
-		47D3EDCC27EADB5800211F61 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				47D3EDBC27EAD8C200211F61 /* ListViewController.swift */,
-				47D3EDD527EAF75700211F61 /* DetailViewController.swift */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
 		47D3EDCD27EADB6400211F61 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				47D3EDD327EAF01800211F61 /* MyTableViewCell.swift */,
+				47D3EDBC27EAD8C200211F61 /* ListViewController.swift */,
+				47D3EDD527EAF75700211F61 /* DetailViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -103,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				47D3EDD127EADC4600211F61 /* Member.swift */,
-				47D3EDCF27EADBBB00211F61 /* MemberListManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -111,10 +103,18 @@
 		631809682B4D36F800BF0222 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				631809692B4D372100BF0222 /* MemberViewModel.swift */,
 				6318096B2B4D372C00BF0222 /* MemberListViewModel.swift */,
+				631809692B4D372100BF0222 /* MemberViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		63C970F82B4E5CDE00B0ABB9 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				47D3EDCF27EADBBB00211F61 /* MemberListManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,6 +347,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MemberList/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라를 사용해도 되겠습니까?";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진첩을 사용해도 되겠습니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -375,6 +377,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MemberList/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "카메라를 사용해도 되겠습니까?";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "사진첩을 사용해도 되겠습니까?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

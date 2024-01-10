@@ -35,7 +35,7 @@ struct Member {
         
         self.memberId = Member.memberNumbers
         
-        self.memberImage = image
+//        self.memberImage = image
         self.name = name
         self.age = age
         self.phone = phone
@@ -48,12 +48,12 @@ struct Member {
         
         self = exitingMember
         
-        self.memberImage = image
+//        self.memberImage = image
         self.name = name
         self.age = age
         self.phone = phone
         self.address = address
         
-        Member.memberNumbers += 1
+//        Member.memberNumbers += 1
     }
 }

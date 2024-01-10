@@ -10,12 +10,18 @@ import UIKit
 final class MyTableViewCell: UITableViewCell {
 
     //MARK: - 멤버 저장속성 구현
-    var member: Member? {
+//    var member: Member? {
+//        didSet {
+//            guard var member = member else { return }
+//            mainImageView.image = member.memberImage
+//            memberNameLabel.text = member.name
+//            addressLabel.text = member.address
+//        }
+//    }
+    
+    var viewModel: MemberViewModel! {
         didSet {
-            guard var member = member else { return }
-            mainImageView.image = member.memberImage
-            memberNameLabel.text = member.name
-            addressLabel.text = member.address
+            configureUI()
         }
     }
     
@@ -91,6 +97,12 @@ final class MyTableViewCell: UITableViewCell {
             stackView.topAnchor.constraint(equalTo: self.mainImageView.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: self.mainImageView.bottomAnchor)
         ])
+    }
+    
+    func configureUI() {
+        mainImageView.image = viewModel.memberImage
+        memberNameLabel.text = viewModel.nameString
+        addressLabel.text = viewModel.addressString
     }
     
 }

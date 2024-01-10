@@ -47,7 +47,7 @@ struct Member {
         
         self = exitingMember
         
-        self.memberImage = image
+//        self.memberImage = image
         self.name = name
         self.age = age
         self.phone = phone

@@ -11,14 +11,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         // 네비게이션 컨트롤러 코드로 셋팅하기 ⭐️
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
+        
+        let manager = MemberListManager()
+        
+        let memListVM = MemberListViewModel(dataManager: manager, title: "회원 목록")
 
-        let naviVC = UINavigationController(rootViewController: ListViewController())
+        let memListVC = ListViewController(viewModel: memListVM)
+        let naviVC = UINavigationController(rootViewController: memListVC)
 
         window?.rootViewController = naviVC
         window?.makeKeyAndVisible()

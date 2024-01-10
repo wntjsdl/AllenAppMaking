@@ -12,12 +12,23 @@ final class ListViewController: UIViewController {
     private let tableView = UITableView()
     
     //MARK: - 관리 모델 선언
-    var memberListManager = MemberListManager()
+//    var dataManager: MemberListManager
+    
+    let viewModel: MemberListViewModel
     
     lazy var plusButton: UIBarButtonItem = {
         let button = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(plusButtonTapped))
         return button
     }()
+    
+    init(viewModel: MemberListViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     //MARK: - 라이프사이클
     override func viewDidLoad() {
@@ -29,8 +40,13 @@ final class ListViewController: UIViewController {
         setupTableViewConstraints()
     }
     
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        tableView.reloadData()
+//    }
+    
     func setupNaviBar() {
-        title = "회원 목록"
+        title = viewModel.title
     
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -50,7 +66,6 @@ final class ListViewController: UIViewController {
     func setupTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        
         tableView.rowHeight = 60
         tableView.register(MyTableViewCell.self, forCellReuseIdentifier: "MemberCell")
     }
@@ -71,9 +86,11 @@ final class ListViewController: UIViewController {
     }
     
     @objc func plusButtonTapped() {
-        let detailVC = DetailViewController()
-        detailVC.delegate = self
-        navigationController?.pushViewController(detailVC, animated: true)
+//        let detailVC = DetailViewController()
+//        detailVC.delegate = self
+//        navigationController?.pushViewController(detailVC, animated: true)
+        
+        viewModel.moveNextVCFromCurrentVC(currentVC: self, animated: true)
     }
     
 }
@@ -81,13 +98,17 @@ final class ListViewController: UIViewController {
 //MARK: - 테이블뷰 데이터 소스 구현
 extension ListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return memberListManager.getMembersList().count
+        return viewModel.numberOfRowsInSection(section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "MemberCell", for: indexPath) as! MyTableViewCell
-        cell.member = memberListManager[indexPath.row]
+//        cell.member = memberListManager[indexPath.row]
+        
+        let memberVM = viewModel.memberViewModelAtIndex(indexPath.row)
+        cell.viewModel = memberVM
+        
         cell.selectionStyle = .none
         return cell
     }
@@ -98,28 +119,31 @@ extension ListViewController: UITableViewDataSource {
 extension ListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailVC = DetailViewController()
-        detailVC.delegate = self
-        
-        let currentMember = memberListManager.getMembersList()[indexPath.row]
-        detailVC.member = currentMember
-        
-        navigationController?.pushViewController(detailVC, animated: true)
+//        let detailVC = DetailViewController()
+//        detailVC.delegate = self
+//        
+//        let currentMember = memberListManager.getMembersList()[indexPath.row]
+//        detailVC.member = currentMember
+//        
+//        navigationController?.pushViewController(detailVC, animated: true)
+        viewModel.moveNextVCFromCurrentVC(indexPath.row, currentVC: self, animated: true)
     }
 }
 
 //MARK: - 멤버 추가하거나, 업데이트에 대한 델리게이트 구현
 
-extension ListViewController: MemberDelegate {
-
-    func addNewMember(with member: Member) {
-        memberListManager.makeNewMember(member)
-        tableView.reloadData()
-    }
-    
-    func updateMember(at index: Int, with member: Member) {
-        memberListManager.updateMemberInfo(index: index, with: member)
-        tableView.reloadData()
-    }
-    
-}
+//extension ListViewController: MemberDelegate {
+//
+//    func addNewMember(with member: Member) {
+////        memberListManager.makeNewMember(member)
+//        viewModel.makeNewMember(member)
+//        tableView.reloadData()
+//    }
+//    
+//    func updateMember(at index: Int, with member: Member) {
+////        memberListManager.updateMemberInfo(index: index, with: member)
+//        viewModel.updateMemberInfo(index: index, with: member)
+//        tableView.reloadData()
+//    }
+//    
+//}
