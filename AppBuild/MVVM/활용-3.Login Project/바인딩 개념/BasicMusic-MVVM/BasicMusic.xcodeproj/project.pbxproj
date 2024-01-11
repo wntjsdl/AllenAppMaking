@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		63C970FB2B4EB66900B0ABB9 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C970FA2B4EB66900B0ABB9 /* Observable.swift */; };
 		91F732C329C47BDB00C9BD8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F732C229C47BDB00C9BD8F /* AppDelegate.swift */; };
 		91F732C529C47BDB00C9BD8F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F732C429C47BDB00C9BD8F /* SceneDelegate.swift */; };
 		91F732C729C47BDB00C9BD8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F732C629C47BDB00C9BD8F /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		63C970FA2B4EB66900B0ABB9 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		91F732BF29C47BDB00C9BD8F /* BasicMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BasicMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91F732C229C47BDB00C9BD8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		91F732C429C47BDB00C9BD8F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +45,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		63C970F92B4EB65700B0ABB9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				63C970FA2B4EB66900B0ABB9 /* Observable.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		91F732B629C47BDB00C9BD8F = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +74,7 @@
 			children = (
 				91F732C229C47BDB00C9BD8F /* AppDelegate.swift */,
 				91F732C429C47BDB00C9BD8F /* SceneDelegate.swift */,
+				63C970F92B4EB65700B0ABB9 /* Utils */,
 				91F732E229C4AC8000C9BD8F /* APIService */,
 				91F732D829C48A8500C9BD8F /* Models */,
 				91F732DD29C49F1200C9BD8F /* ViewModels */,
@@ -182,6 +193,7 @@
 				91F732DF29C49F4900C9BD8F /* MusicViewModel.swift in Sources */,
 				91F732C729C47BDB00C9BD8F /* ViewController.swift in Sources */,
 				91F732C329C47BDB00C9BD8F /* AppDelegate.swift in Sources */,
+				63C970FB2B4EB66900B0ABB9 /* Observable.swift in Sources */,
 				91F732DC29C48AE800C9BD8F /* Music.swift in Sources */,
 				91F732C529C47BDB00C9BD8F /* SceneDelegate.swift in Sources */,
 				91F732E429C4AC9500C9BD8F /* APIService.swift in Sources */,
